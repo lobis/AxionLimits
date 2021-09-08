@@ -7,17 +7,15 @@
 
 # ==============================================================================#
 
-from numpy import *
-from numpy.random import *
 import matplotlib as mpl
-import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.gridspec as gridspec
-from matplotlib.colors import ListedColormap
-from matplotlib import colors
+import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
+from matplotlib import colors
+from matplotlib.colors import ListedColormap
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-import matplotlib.cm as cm
+from numpy import *
 from scipy.stats import norm
 
 pltdir = 'plots/'
@@ -35,8 +33,8 @@ def col_alpha(col, alpha=0.1):
 # ==============================================================================#
 
 
-def FilledLimit(ax, dat, text_label='', col='ForestGreen', edgecolor='k', zorder=1, \
-                lw=2, y2=1e0, edgealpha=0.6, text_on=False, text_pos=[0, 0], \
+def FilledLimit(ax, dat, text_label='', col='ForestGreen', edgecolor='k', zorder=1,
+                lw=2, y2=1e0, edgealpha=0.6, text_on=False, text_pos=[0, 0],
                 ha='left', va='top', clip_on=True, fs=15, text_col='k', rotation=0, facealpha=1):
     plt.plot(dat[:, 0], dat[:, 1], '-', color=edgecolor, alpha=edgealpha, zorder=zorder, lw=lw)
     plt.fill_between(dat[:, 0], dat[:, 1], y2=y2, edgecolor=None, facecolor=col, alpha=facealpha, zorder=zorder)
@@ -48,7 +46,7 @@ def FilledLimit(ax, dat, text_label='', col='ForestGreen', edgecolor='k', zorder
 
 # Black hole superradiance constraints on the axion mass
 # can be used for any coupling
-def BlackHoleSpins(ax, C, label_position, whichfile='Mehta', fs=20, col='k', alpha=0.4, \
+def BlackHoleSpins(ax, C, label_position, whichfile='Mehta', fs=20, col='k', alpha=0.4,
                    PlotLine=True, rotation=90, linecolor='k', facecolor='k', text_col='k', text_on=True, zorder=0):
     y2 = ax.get_ylim()[-1]
 
@@ -93,14 +91,16 @@ def UpperFrequencyAxis(ax, N_Hz=1, tickdir='out', xtick_rotation=0, labelsize=25
     plt.sca(ax)
 
 
-def FigSetup(xlab=r'$m_a$ [eV]', ylab='', \
-             g_min=1.0e-19, g_max=1.0e-6, \
-             m_min=1.0e-12, m_max=1.0e7, \
-             lw=2.5, lfs=45, tfs=25, tickdir='out', \
-             Grid=False, Shape='Rectangular', \
-             mathpazo=False, TopAndRightTicks=False, \
-             xtick_rotation=20.0, tick_pad=8, \
+def FigSetup(xlab=r'$m_a$ [eV]', ylab='',
+             g_min=1.0e-19, g_max=1.0e-6,
+             m_min=1.0e-12, m_max=1.0e7,
+             lw=2.5, lfs=45, tfs=25, tickdir='out',
+             Grid=False, Shape='Rectangular',
+             mathpazo=False, TopAndRightTicks=False,
+             xtick_rotation=20.0, tick_pad=8,
              FrequencyAxis=False, N_Hz=1, upper_xlabel=r"$\nu_a$ [Hz]", **freq_kwargs):
+    global fig
+
     plt.rcParams['axes.linewidth'] = lw
     plt.rc('text', usetex=True)
     plt.rc('font', family='serif', size=tfs)
@@ -145,9 +145,9 @@ def FigSetup(xlab=r'$m_a$ [eV]', ylab='', \
         ax.grid(zorder=0)
 
     if FrequencyAxis:
-        UpperFrequencyAxis(ax, N_Hz=N_Hz, tickdir='out', \
-                           xtick_rotation=xtick_rotation, \
-                           xlabel=upper_xlabel, \
+        UpperFrequencyAxis(ax, N_Hz=N_Hz, tickdir='out',
+                           xtick_rotation=xtick_rotation,
+                           xlabel=upper_xlabel,
                            lfs=lfs / 1.3, tfs=tfs, tick_pad=tick_pad - 2, **freq_kwargs)
 
     return fig, ax
@@ -2198,7 +2198,7 @@ def cbar(mappable, extend='neither', minorticklength=8, majorticklength=10, \
     return cbar
 
 
-def MySquarePlot(xlab='', ylab='', \
+def MySquarePlot(xlab='', ylab='',
                  lw=2.5, lfs=45, tfs=25, size_x=13, size_y=12, Grid=False):
     plt.rcParams['axes.linewidth'] = lw
     plt.rc('text', usetex=True)
@@ -2218,7 +2218,7 @@ def MySquarePlot(xlab='', ylab='', \
     return fig, ax
 
 
-def MyDoublePlot(xlab1='', ylab1='', xlab2='', ylab2='', \
+def MyDoublePlot(xlab1='', ylab1='', xlab2='', ylab2='',
                  wspace=0.25, lw=2.5, lfs=45, tfs=25, size_x=20, size_y=11, Grid=False):
     plt.rcParams['axes.linewidth'] = lw
     plt.rc('text', usetex=True)
@@ -2246,7 +2246,7 @@ def MyDoublePlot(xlab1='', ylab1='', xlab2='', ylab2='', \
     return fig, ax1, ax2
 
 
-def MyTriplePlot(xlab1='', ylab1='', xlab2='', ylab2='', xlab3='', ylab3='', \
+def MyTriplePlot(xlab1='', ylab1='', xlab2='', ylab2='', xlab3='', ylab3='',
                  wspace=0.25, lw=2.5, lfs=45, tfs=25, size_x=20, size_y=7, Grid=False):
     plt.rcParams['axes.linewidth'] = lw
     plt.rc('text', usetex=True)
@@ -2285,9 +2285,6 @@ def MyTriplePlot(xlab1='', ylab1='', xlab2='', ylab2='', xlab3='', ylab3='', \
 
 
 # ==============================================================================#
-
-
-# ==============================================================================#
 def reverse_colourmap(cmap, name='my_cmap_r'):
     reverse = []
     k = []
@@ -2309,7 +2306,6 @@ def reverse_colourmap(cmap, name='my_cmap_r'):
 # ==============================================================================#
 
 
-from matplotlib import patches
 from matplotlib import text as mtext
 import numpy as np
 import math
@@ -2325,16 +2321,16 @@ class CurvedText(mtext.Text):
 
         axes.add_artist(self)
 
-        ##saving the curve:
+        # saving the curve:
         self.__x = x
         self.__y = y
         self.__zorder = self.get_zorder()
 
-        ##creating the text objects
+        # creating the text objects
         self.__Characters = []
         for c in text:
             if c == ' ':
-                ##make this an invisible 'a':
+                # make this an invisible 'a':
                 t = mtext.Text(0, 0, 'a')
                 t.set_alpha(0.0)
             else:
@@ -2348,8 +2344,8 @@ class CurvedText(mtext.Text):
             self.__Characters.append((c, t))
             axes.add_artist(t)
 
-    ##overloading some member functions, to assure correct functionality
-    ##on update
+    # overloading some member functions, to assure correct functionality
+    # on update
     def set_zorder(self, zorder):
         super(CurvedText, self).set_zorder(zorder)
         self.__zorder = self.get_zorder()
@@ -2371,17 +2367,17 @@ class CurvedText(mtext.Text):
 
         # preparations
 
-        ##determining the aspect ratio:
-        ##from https://stackoverflow.com/a/42014041/2454357
+        # determining the aspect ratio:
+        # from https://stackoverflow.com/a/42014041/2454357
 
-        ##data limits
+        # data limits
         xlim = self.axes.get_xlim()
         ylim = self.axes.get_ylim()
-        ## Axis size on figure
+        # Axis size on figure
         figW, figH = self.axes.get_figure().get_size_inches()
-        ## Ratio of display units
+        # Ratio of display units
         _, _, w, h = self.axes.get_position().bounds
-        ##final aspect ratio
+        # final aspect ratio
         aspect = ((figW * w) / (figH * h)) * (ylim[1] - ylim[0]) / (xlim[1] - xlim[0])
 
         # points of the curve in figure coordinates:
@@ -2439,8 +2435,8 @@ class CurvedText(mtext.Text):
             # of the character will be
             fraction = (w / 2 - used) / r_fig_dist[il]
 
-            ##setting the character position in data coordinates:
-            ##interpolate between the two points:
+            # setting the character position in data coordinates:
+            # interpolate between the two points:
             x = self.__x[il] + fraction * (self.__x[ir] - self.__x[il])
             y = self.__y[il] + fraction * (self.__y[ir] - self.__y[il])
 
@@ -2460,7 +2456,7 @@ class CurvedText(mtext.Text):
                 [-math.sin(rad) / aspect, math.cos(rad)]
             ])
 
-            ##computing the offset vector of the rotated character
+            # computing the offset vector of the rotated character
             drp = np.dot(dr, rot_mat)
 
             # setting final position and rotation:

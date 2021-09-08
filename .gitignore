@@ -1,9 +1,14 @@
+# Project specific
+
 refs/AxionLimits_Refs.aux
 refs/AxionLimits_Refs.bbl
 refs/AxionLimits_Refs.blg
 refs/AxionLimits_Refs.out
 refs/AxionLimits_Refs.synctex.gz
 refs/AxionLimits_Refs.log
+
+notebooks/*.py
+# Default options
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
